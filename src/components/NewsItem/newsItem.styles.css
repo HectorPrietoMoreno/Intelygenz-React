@@ -1,0 +1,18 @@
+.itemContainer {
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(230, 222, 118);
+    border: solid 1px black;
+    margin: 5px;
+    cursor: pointer;
+}
+.info {
+    width: 60%;
+}
+.image {
+    width: 20%;
+    margin-left: 5%;
+}
+.title {
+    font-weight: 500;
+}

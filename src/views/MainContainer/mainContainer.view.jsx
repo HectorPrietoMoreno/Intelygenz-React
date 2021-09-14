@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+// Parsing library
 import { parseString } from 'xml2js';
+// Components
+import Main from '../Main/main.view';
 
-const Main = () => {
+const MainContainer = () => {
     const [ data, setData ] = useState({});
+    const [isLoading, setIsLoading ] = useState(true);
+    const [isError, setIsError ] = useState(false);
     useEffect(() => {
         const url = "https://www.xatakandroid.com/tag/feeds/rss2.xml";
         axios.get(url, {
@@ -11,14 +16,22 @@ const Main = () => {
         }).then((response) => {
             // parsing xml data
             parseString(response.data, (err, results) => {
-                if (err) console.log( 'Parsing Error', err);
+                if (err) setIsError(true);
                 setData(results.rss.channel[0]);
+                setIsLoading(false);
             });
         });
     }, []);
-    return (<div>Hello Main: 
-        { data && data.title && data.title[0]}
-    </div>);
+    return (
+    <React.Fragment>
+        {
+            isError ? <div>Error</div> :
+                isLoading ?
+                    <div>Loading...</div> :
+                    <Main data={data}/>
+        }
+    </React.Fragment>
+    );
 };
 
-export default Main;
+export default MainContainer;

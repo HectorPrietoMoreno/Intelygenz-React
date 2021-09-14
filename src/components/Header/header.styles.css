@@ -1,0 +1,8 @@
+.headerContainer {
+    background-color: blue;
+    border: solid 1px black;
+    text-align: center;
+}
+.headerTitle {
+    font-weight: 500;
+}
