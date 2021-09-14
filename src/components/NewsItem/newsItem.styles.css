@@ -8,6 +8,9 @@
 }
 .info {
     width: 60%;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-left: 20px;
 }
 .image {
     width: 20%;
