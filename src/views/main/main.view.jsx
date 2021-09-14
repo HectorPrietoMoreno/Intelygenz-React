@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 
 import Header from '../../components/Header/header.component';
 import NewsItem from '../../components/NewsItem/newsItem.component';
 
-const Main = ({data}) => {
+const Main = ({data, handleSetNews}) => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [news, setNews] = useState([]);
@@ -12,6 +13,7 @@ const Main = ({data}) => {
             setTitle(data.title[0]);
             setDescription(data.description[0]);
             setNews(data.item);
+            handleSetNews(data.item);
             }
     }, [data]);
     return (
@@ -22,4 +24,13 @@ const Main = ({data}) => {
     ); 
 };
 
-export default Main;
+const mapDispatchToProps = dispatch => {
+    return {
+        handleSetNews: (payload) => dispatch({ type: 'SET_NEWS', payload })
+    }
+};
+
+export default connect(
+    null,
+    mapDispatchToProps
+)(Main);
