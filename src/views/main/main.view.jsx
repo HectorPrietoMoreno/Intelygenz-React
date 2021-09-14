@@ -5,16 +5,41 @@ import Header from '../../components/Header/header.component';
 import NewsItem from '../../components/NewsItem/newsItem.component';
 
 const Main = ({data, handleSetNews}) => {
+
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [news, setNews] = useState([]);
+
+    const orderItemsByPubDate = items => {
+        const orderedOutput = [];
+        items.forEach(item => {
+            if (orderedOutput.length) {
+                let i = 0;
+                let isDone = false;
+                do {
+                    if (new Date(item.pubDate) >= new Date(orderedOutput[i].pubDate)) {
+                        orderedOutput.unshift(item);
+                        isDone = true;
+                    } else {
+                        i++;
+                    }
+                } while (isDone || i < orderedOutput.length)
+                if (!isDone) orderedOutput.push(item);
+            } else {
+                orderedOutput.push(item);
+            }
+        });
+        return orderedOutput;
+    }
+
     useEffect(() => {
         if (Object.keys(data).length) {
             setTitle(data.title[0]);
             setDescription(data.description[0]);
-            setNews(data.item);
-            handleSetNews(data.item);
-            }
+            const orderedData = orderItemsByPubDate(data.item);
+            setNews(orderedData);
+            handleSetNews(orderedData);
+        }
     }, [data]);
     return (
         <React.Fragment>
