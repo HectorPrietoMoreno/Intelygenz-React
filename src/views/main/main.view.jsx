@@ -19,7 +19,7 @@ const Main = ({data, handleSetNews}) => {
     return (
         <React.Fragment>
             <Header title={title} description={description} />
-            { news.length && news.map(item => <NewsItem key={item.guid} data={item} />) }
+            { news.length && news.map((item, index) => <NewsItem key={index} data={item} index={index} />) }
         </React.Fragment>
     ); 
 };

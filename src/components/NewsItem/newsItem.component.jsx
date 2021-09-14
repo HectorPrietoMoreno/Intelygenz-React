@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from "react-router-dom";
 import './newsItem.styles.css';
 
-const NewsItem = ({data}) => {
+const NewsItem = ({data, index}) => {
 
+    const history = useHistory();
     const [ imageSrc, setImageSrc ] = useState('');
 
     useEffect(() => {
@@ -13,7 +15,7 @@ const NewsItem = ({data}) => {
     }, [data]);
 
     const handleClick = () => {
-        alert("click!");
+        history.push(`/details/${index}`);
     }
     
     return (
