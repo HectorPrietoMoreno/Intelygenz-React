@@ -31,3 +31,10 @@ I decided to use this popular library to make easier the XML response from RSS c
 
 - Run app:  `yarn start`
 - Run tests:  `yarn test`
+
+
+
+## Additional non-required tasks
+
+- Create Readme
+- Add loading and error status
