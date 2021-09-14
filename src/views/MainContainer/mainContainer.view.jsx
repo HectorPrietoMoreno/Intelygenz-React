@@ -6,9 +6,9 @@ import { parseString } from 'xml2js';
 import Main from '../Main/main.view';
 
 const MainContainer = () => {
-    const [ data, setData ] = useState({});
-    const [isLoading, setIsLoading ] = useState(true);
-    const [isError, setIsError ] = useState(false);
+    const [data, setData] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
+    const [isError, setIsError] = useState(false);
     useEffect(() => {
         const url = "https://www.xatakandroid.com/tag/feeds/rss2.xml";
         axios.get(url, {
@@ -23,14 +23,14 @@ const MainContainer = () => {
         });
     }, []);
     return (
-    <React.Fragment>
-        {
-            isError ? <div>Error</div> :
-                isLoading ?
-                    <div>Loading...</div> :
-                    <Main data={data}/>
-        }
-    </React.Fragment>
+        <React.Fragment>
+            {
+                isError ? <div>Error</div> :
+                    isLoading ?
+                        <div>Loading...</div> :
+                        <Main data={data} />
+            }
+        </React.Fragment>
     );
 };
 
